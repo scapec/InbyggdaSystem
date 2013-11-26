@@ -468,6 +468,9 @@
     <Compile Include="src\ASF\sam\utils\syscalls\gcc\syscalls.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\SOS.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\SOS.h">
       <SubType>compile</SubType>
     </Compile>

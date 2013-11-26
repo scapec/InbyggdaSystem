@@ -87,7 +87,7 @@ for (;;)	/* repeat blink in infinity */
 
 /* cut the function definitions from here */
 
-void PIOB_init(int 26) /**< Configures the PB port on the Due board */
+void PIOB_init(int PinNumber) /**< Configures the PB port on the Due board */
 {
 /*
  * Nothing in this function needs to be changed in lab 1a 
@@ -136,7 +136,7 @@ PIOB_OWDR = 0x00FFFFFFU;
 }	/* end of PIO_init() */
 
 
-#include "PortB.h"
+//#include "PortB.h"
 
 register_data pin(int n) /**< Sets bit n to 1 */
 /*
