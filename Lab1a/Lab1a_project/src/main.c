@@ -62,12 +62,16 @@ int i;				/* loop counter for the delay */
 volatile int j; 	/* Dummy volatile to prevent compiler optimising the variable away */
 
 
-int delay_length = 400000;	/* variable determining the length of a delay */
+int delay_length = 100000;	/* variable determining the length of a delay */
+int delay_length2 = 300000;
+int delay_length3 = 500000;
+
+
 
 PIOB_init(26);		/* initialises the digital B I/O-port */
 
 for (;;)	/* repeat blink in infinity */
-{				
+{
 	j=0;	/* makes sure j doesn't overflow */
 	
 	PIOB_SODR = pin(26);	/* sets a bit of I/O port B to a one */
@@ -76,74 +80,103 @@ for (;;)	/* repeat blink in infinity */
 		j++;	/* some easy predictable operation */
 	}
 	
+	PIOB_CODR = pin(26);	/* clears a bit of I/O port B */
+	for (i=0; i<delay_length; i++)	/* The delay counter */
+	{
+		j++;
+	}
+	PIOB_SODR = pin(26);	/* sets a bit of I/O port B to a one */
+	for (i=0; i<delay_length; i++)	/* The delay counter */
+	{
+		j++;	/* some easy predictable operation */
+	}
+	
+	PIOB_CODR = pin(26);	/* clears a bit of I/O port B */
+	for (i=0; i<delay_length; i++)	/* The delay counter */
+	{
+		j++;
+	}
+	PIOB_SODR = pin(26);	/* sets a bit of I/O port B to a one */
+	for (i=0; i<delay_length; i++)	/* The delay counter */
+	{
+		j++;	/* some easy predictable operation */
+	}
+	
+	PIOB_CODR = pin(26);	/* clears a bit of I/O port B */
+	for (i=0; i<delay_length2; i++)	/* The delay counter */
+	{
+		j++;
+	}
 
-} /* end of main() */
+	PIOB_SODR = pin(26);	/* sets a bit of I/O port B to a one */
+	for (i=0; i<delay_length2; i++)	/* The delay counter */
+	{
+		j++;	/* some easy predictable operation */
+	}
+	
+	PIOB_CODR = pin(26);	/* clears a bit of I/O port B */
+	for (i=0; i<delay_length; i++)	/* The delay counter */
+	{
+		j++;
+	}
+	PIOB_SODR = pin(26);	/* sets a bit of I/O port B to a one */
+	for (i=0; i<delay_length2; i++)	/* The delay counter */
+	{
+		j++;	/* some easy predictable operation */
+	}
+	
+	PIOB_CODR = pin(26);	/* clears a bit of I/O port B */
+	for (i=0; i<delay_length; i++)	/* The delay counter */
+	{
+		j++;
+	}
+	PIOB_SODR = pin(26);	/* sets a bit of I/O port B to a one */
+	for (i=0; i<delay_length2; i++)	/* The delay counter */
+	{
+		j++;	/* some easy predictable operation */
+	}
+	
+	PIOB_CODR = pin(26);	/* clears a bit of I/O port B */
+	for (i=0; i<delay_length2; i++)	/* The delay counter */
+	{
+		j++;
+	}
+
+	PIOB_SODR = pin(26);	/* sets a bit of I/O port B to a one */
+	for (i=0; i<delay_length; i++)	/* The delay counter */
+	{
+		j++;	/* some easy predictable operation */
+	}
+	
+	PIOB_CODR = pin(26);	/* clears a bit of I/O port B */
+	for (i=0; i<delay_length; i++)	/* The delay counter */
+	{
+		j++;
+	}
+	PIOB_SODR = pin(26);	/* sets a bit of I/O port B to a one */
+	for (i=0; i<delay_length; i++)	/* The delay counter */
+	{
+		j++;	/* some easy predictable operation */
+	}
+	
+	PIOB_CODR = pin(26);	/* clears a bit of I/O port B */
+	for (i=0; i<delay_length; i++)	/* The delay counter */
+	{
+		j++;
+	}
+	PIOB_SODR = pin(26);	/* sets a bit of I/O port B to a one */
+	for (i=0; i<delay_length; i++)	/* The delay counter */
+	{
+		j++;	/* some easy predictable operation */
+	}
+	
+	PIOB_CODR = pin(26);	/* clears a bit of I/O port B */
+	for (i=0; i<delay_length3; i++)	/* The delay counter */
+	{
+		j++;
+	}
+}
+
+}	/* end of main() */
 
 
-
-
-/* cut the function definitions from here */
-
-void PIOB_init(int PinNumber) /**< Configures the PB port on the Due board */
-{
-/*
- * Nothing in this function needs to be changed in lab 1a 
- *
- * Note that all these register controls will not be needed in Laboration 1a
- * but are included for future use
- */
-
-/* 
- * setting up the memory addresses of the digital I/O B-port 
- * which does not depend if the B-port is used as an input or output
- * Most of these variables will not be used
- */
-register_ctrl *const p_PIOB_BASE = (register_ctrl *) 0x400E1000U;	/*base address for PIO registers */
-register_ctrl *const p_PIOB_ABSR = (register_ctrl *) (0x400E1070U);
-register_ctrl *const p_PIOB_PER = (register_ctrl *) (0x400E1000U);	/* defines the address for enabling the parallel Input/output B register */
-register_ctrl *const p_PIOB_PSR = (register_ctrl *) (0x400E1008U);	/* defines the address for status of the parallel Input/output B register */
-register_ctrl *const p_PIOB_OER = (register_ctrl *) 0x400E1010U;	/* defines the address for enabling the parallel output B register */
-register_ctrl *const p_PIOB_OSR = (register_ctrl *) 0x400E1018U;	/* defines the address for status of the parallel output B register */
-register_ctrl *const p_PIOB_ODR = (register_ctrl *) 0x400E1014U;	/* defines the address for output disable of the parallel output B register */
-register_ctrl *const p_PIOB_MDER = (register_ctrl *) 0x400E1050U;	/*   */
-register_ctrl *const p_PIOB_MDDR = (register_ctrl *) 0x400E1054U;	/*   */
-register_ctrl *const p_PIOB_OWER = (register_ctrl *) 0x400E10A0U;	/*   */
-register_ctrl *const p_PIOB_OWDR = (register_ctrl *) 0x400E10A4U;	/*   */
-
-/* 
- * configuring the relevant pin on the B-port as outputs, 
- * e.g. pin 27 which is the built-in LED on an Arduino Due board
- * for other pins see http://arduino.cc/en/Hacking/PinMappingSAM3X 
- */
- 
-PIOB_PER = pin(PinNumber);		/* Enables pin on PIOB */
-PIOB_OER = pin(PinNumber);		/* Enables pins for output */
-PIOB_OWER = pin(PinNumber);	/* Enables pins for output */
-
-/*	
-PIOB_ABSR =	0xFFFFFFFFU;
-PIOB_ODR = 0xF0FFFFFFU;
-PIOB_SODR = 0x00000000U;
-PIOB_CODR = 0xFFFFFFFFU;
-PIOB_MDER = 0x0F000000U;
-PIOB_MDDR = 0xF0FFFFFFU;
-PIOB_OWDR = 0x00FFFFFFU;
-*/
-
-}	/* end of PIO_init() */
-
-
-//#include "PortB.h"
-
-register_data pin(int n) /**< Sets bit n to 1 */
-/*
- * A simple, but maybe not so efficient, way to create a single 1 at a
- * particular place in a long word
- *
- * Note that the first bit in an I/O port is bit 0, not bit 1
- */
-{
-return (1 << (n));	
-}	}/* end of pin() */
-
-/* cut the function definitions to here */
