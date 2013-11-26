@@ -5,6 +5,7 @@
  * program that blinks an LED connected to pin PB26 of the Arduino DUE board
  * Ulrik Eklund, 2013-10-25
  *
+ * Modified Matko Scapec & Osama Fayad
  */
 
 /**
@@ -59,6 +60,8 @@ register_ctrl *const p_PIOB_CODR = (register_ctrl *) 0x400E1034U;	/* defines the
 
 int i;				/* loop counter for the delay */	
 volatile int j; 	/* Dummy volatile to prevent compiler optimising the variable away */
+
+
 int delay_length = 400000;	/* variable determining the length of a delay */
 
 PIOB_init(26);		/* initialises the digital B I/O-port */
@@ -73,14 +76,8 @@ for (;;)	/* repeat blink in infinity */
 		j++;	/* some easy predictable operation */
 	}
 	
-	PIOB_CODR = pin(26);	/* clears a bit of I/O port B */ 
-	for (i=0; i<delay_length; i++)	/* The delay counter */
-	{
-		j++;
-	}
-}
 
-}	/* end of main() */
+} /* end of main() */
 
 
 
@@ -147,6 +144,6 @@ register_data pin(int n) /**< Sets bit n to 1 */
  */
 {
 return (1 << (n));	
-}	/* end of pin() */
+}	}/* end of pin() */
 
 /* cut the function definitions to here */
